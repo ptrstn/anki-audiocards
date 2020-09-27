@@ -17,7 +17,8 @@ def slugify(text):
 
 
 def text_to_filename(text, suffix=None, prefix=None):
-    filename = slugify(text)
+    filename = text.replace("::", "__")
+    filename = slugify(filename)
     if suffix:
         filename = f"{filename}{suffix}"
     if prefix:
