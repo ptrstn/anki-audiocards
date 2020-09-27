@@ -2,7 +2,7 @@ import pandas
 
 from audiocards.filename import text_to_filename
 
-df = pandas.read_csv("data/vokabeln_vl1.csv", sep="\t")
+df = pandas.read_csv("data/vokabeln.csv", sep="\t")
 
 language="ru"
 
