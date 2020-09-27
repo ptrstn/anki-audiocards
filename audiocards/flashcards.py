@@ -4,20 +4,17 @@ import genanki
 
 
 def create_fields_list(names):
-    return [{"name": name} for name in names]
+    fields = [{"name": name} for name in names]
+    fields.append({"name": "Audio"})
+    return fields
 
 
 def create_templates(field_names):
     return [
         {
             "name": "Card 1",
-            "qfmt": f"{{{{{field_names[0]}}}}}",
-            "afmt": f'{{{{FrontSide}}}}<hr id="answer">{{{{{field_names[1]}}}}}',
-        },
-        {
-            "name": "Card 2",
             "qfmt": f"{{{{{field_names[1]}}}}}",
-            "afmt": f'{{{{FrontSide}}}}<hr id="answer">{{{{{field_names[0]}}}}}',
+            "afmt": f'{{{{FrontSide}}}}<hr id="answer">{{{{Audio}}}}{{{{{field_names[0]}}}}}',
         },
     ]
 
@@ -40,4 +37,7 @@ def generate_deck(name):
 
 
 def generate_note(model, values):
+    values = values.copy()
+    last_index = len(values) - 1
+    values[last_index] = f"[sound:{values[last_index]}]"
     return genanki.Note(model=model, fields=values)
