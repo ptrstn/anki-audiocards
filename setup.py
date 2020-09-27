@@ -27,6 +27,6 @@ setup(
     author="Peter Stein",
     license="MIT",
     packages=["audiocards"],
-    install_requires=["gTTS", "pandas"],
+    install_requires=["gTTS", "pandas", "genanki"],
     entry_points={"console_scripts": ["audiocards=audiocards.__main__:main"]},
 )
