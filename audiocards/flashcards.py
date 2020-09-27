@@ -2,6 +2,15 @@ import random
 
 import genanki
 
+css = """.card {
+ font-family: arial;
+ font-size: 20px;
+ text-align: center;
+ color: black;
+ background-color: white;
+}
+"""
+
 
 def create_fields_list(names):
     fields = [{"name": name} for name in names]
@@ -13,8 +22,11 @@ def create_templates(field_names):
     return [
         {
             "name": "Card 1",
-            "qfmt": f"{{{{{field_names[1]}}}}}",
-            "afmt": f'{{{{FrontSide}}}}<hr id="answer">{{{{Audio}}}}{{{{{field_names[0]}}}}}',
+            "qfmt": f"{{{{{field_names[1]}}}}}{{{{type:{field_names[0]}}}}}",
+            "afmt": (
+                f"{{{{FrontSide}}}}"
+                f'<hr id="answer">{{{{Audio}}}}{{{{{field_names[0]}}}}}'
+            ),
         },
     ]
 
@@ -29,6 +41,7 @@ def generate_model(model_name, field_names):
         model_name,
         fields=create_fields_list(field_names),
         templates=create_templates(field_names),
+        css=css,
     )
 
 
