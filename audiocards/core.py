@@ -1,9 +1,9 @@
 import pandas
 
-from audiocards.filename import text_to_filename
+from audiocards.audio import text_to_speech
 
 df = pandas.read_csv("data/vokabeln.csv", sep="\t")
 
-language="ru"
+language = "ru"
 
-df.loc[:, "audio_filename"] = df.iloc[:, 0].apply(text_to_filename, prefix=f"{language}_", suffix=".mp3")
+df.iloc[:, 0].apply(text_to_speech, language="ru", path="data/audio")

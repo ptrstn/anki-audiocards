@@ -15,3 +15,4 @@ def text_to_speech(text, language, path, skip_exist=True):
         print(f"Saved '{text}' to '{filepath}'")
     else:
         print(f"'{text}' already exists in '{filepath}'")
+    return filepath

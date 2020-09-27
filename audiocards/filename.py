@@ -11,9 +11,9 @@ def slugify(text):
     Convert to lowercase.
     Strip leading and trailing whitespace.
     """
-    text = unicodedata.normalize('NFKC', text)
-    text = re.sub(r'[^\w\s-]', '', text).strip().lower()
-    return re.sub(r'[-\s]+', '_', text)
+    text = unicodedata.normalize("NFKC", text)
+    text = re.sub(r"[^\w\s-]", "", text).strip().lower()
+    return re.sub(r"[-\s]+", "_", text)
 
 
 def text_to_filename(text, suffix=None, prefix=None):
