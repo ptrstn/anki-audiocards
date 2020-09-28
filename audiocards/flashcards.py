@@ -22,10 +22,16 @@ def create_templates(field_names):
     return [
         {
             "name": "Card 1",
-            "qfmt": f"{{{{{field_names[1]}}}}}{{{{type:{field_names[0]}}}}}",
+            "qfmt": (
+                f"{{{{{field_names[1]}}}}}<br>\n"
+                f"{{{{type:{field_names[0]}}}}}<br>\n"
+                f"deutsch -> russisch\n"
+            ),
             "afmt": (
-                f"{{{{FrontSide}}}}"
-                f'<hr id="answer">{{{{Audio}}}}{{{{{field_names[0]}}}}}'
+                f"{{{{FrontSide}}}}<br>\n"
+                f'<hr id="answer"><br>\n'
+                f"{{{{Audio}}}}<br>\n"
+                f"{{{{{field_names[0]}}}}}\n"
             ),
         },
     ]
