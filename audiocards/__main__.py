@@ -26,7 +26,7 @@ def main():
 
     kwargs = {
         "csv_path": args.csv_path,
-        "language": args.language,
+        "language": args.language.lower(),
         "deck_name": args.deck_name,
     }
 
