@@ -14,15 +14,29 @@ def parse_arguments():
     parser.add_argument("csv_path", help="Path to the csv file")
     parser.add_argument("language", help="Language of flash cards")
     parser.add_argument("deck_name", help="Name of the Anki deck")
+    parser.add_argument("--deck-id", help="Unique deck identifier")
+    parser.add_argument("--model-id", help="Unique model identifier")
 
     return parser.parse_args()
 
 
 def main():
     args = parse_arguments()
-    create_deck(
-        csv_path=args.csv_path, language=args.language, deck_name=args.deck_name
-    )
+    print(args)
+
+    kwargs = {
+        "csv_path": args.csv_path,
+        "language": args.language,
+        "deck_name": args.deck_name,
+    }
+
+    if args.deck_id:
+        kwargs["deck_id"] = int(args.deck_id)
+
+    if args.model_id:
+        kwargs["model_id"] = int(args.model_id)
+
+    create_deck(**kwargs)
 
 
 if __name__ == "__main__":

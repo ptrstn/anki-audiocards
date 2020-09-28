@@ -41,9 +41,9 @@ def generate_anki_id():
     return random.randrange(1 << 30, 1 << 31)
 
 
-def generate_model(model_name, field_names):
+def generate_model(model_name, field_names, identifier=None):
     return genanki.Model(
-        generate_anki_id(),
+        identifier if identifier else generate_anki_id(),
         model_name,
         fields=create_fields_list(field_names),
         templates=create_templates(field_names),
@@ -51,8 +51,8 @@ def generate_model(model_name, field_names):
     )
 
 
-def generate_deck(name):
-    return genanki.Deck(generate_anki_id(), name)
+def generate_deck(name, identifier=None):
+    return genanki.Deck(identifier if identifier else generate_anki_id(), name)
 
 
 def generate_note(model, values):

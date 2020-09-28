@@ -6,15 +6,17 @@ from audiocards.filename import text_to_filename
 from audiocards.flashcards import generate_model, generate_deck, generate_note
 
 
-def create_deck(csv_path, language, deck_name):
+def create_deck(csv_path, language, deck_name, deck_id=None, model_id=None):
     language = language
 
     df = pandas.read_csv(csv_path, sep="\t")
     df.iloc[:, 0].apply(text_to_speech, language=language, path="data/audio")
 
     field_names = list(df)
-    my_model = generate_model(model_name=language, field_names=field_names)
-    my_deck = generate_deck(name=deck_name)
+    my_model = generate_model(
+        model_name=language, field_names=field_names, identifier=model_id
+    )
+    my_deck = generate_deck(name=deck_name, identifier=deck_id)
 
     df.loc[:, "audiofile"] = df.iloc[:, 0].apply(
         text_to_filename, prefix=f"{language}_", suffix=".mp3"
