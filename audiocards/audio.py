@@ -12,7 +12,4 @@ def text_to_speech(text, language, path, skip_exist=True):
     if skip_exist and not filepath.exists():
         tts = gTTS(text, lang=language)
         tts.save(filepath)
-        print(f"Saved '{text}' to '{filepath}'")
-    else:
-        print(f"'{text}' already exists in '{filepath}'")
-    return filepath
+        print(f'Saved "{text}" to "{filepath}"')

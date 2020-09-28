@@ -25,4 +25,4 @@ def create_deck(csv_path, language, deck_name):
     my_package.media_files = [f"data/audio/{file}" for file in list(df.audiofile)]
     package_path = f"{text_to_filename(deck_name)}.apkg"
     my_package.write_to_file(package_path)
-    print(f"Generated deck in {package_path}")
+    print(f'Generated deck "{deck_name}" in "{package_path}"')

@@ -20,10 +20,6 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    print(args)
-    print(args.csv_path)
-    print(args.language)
-    print(args.deck_name)
     create_deck(
         csv_path=args.csv_path, language=args.language, deck_name=args.deck_name
     )
