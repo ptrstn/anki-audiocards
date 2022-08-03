@@ -2,14 +2,61 @@ import random
 
 import genanki
 
-css = """.card {
- font-family: arial;
+css = """
+.card {
+ font-family: Helvetica;
  font-size: 20px;
  text-align: center;
  color: black;
- background-color: white;
+ background-color: ghostwhite;
+}
+
+.front {
+ background-color: midnightblue;	
+ color: white;
+ margin: 0;
+ font-size: 45px;
+ line-height: 150px;
+}
+
+.question {
+ background-color: black;	
+ color: white;
+ margin: 0;
+ font-size: 23px;
+ line-height: 46px;
+ margin-bottom: 10px;
+}
+
+input{
+ text-align: center;
+ height: 50px;
+ margin: 10px;
+ border: 0:
+ outline-style: none;
 }
 """
+
+front_template_fstring = """
+<div class="front">{{{{{language_from}}}}}</div>
+<div class="question">{language_from} -> {language_to}</div>
+<div class="input">{{{{type:{language_to}}}}}</div>
+"""
+
+back_template_fstring = """
+{{{{ FrontSide }}}}<br>
+<hr id="answer"><br>
+{{{{ Audio }}}}<br>
+{{{{ {language_to} }}}}
+"""
+
+
+def create_front_template(*fields):
+    return front_template_fstring.format(language_from=fields[1], language_to=fields[0])
+
+
+def create_back_template(*fields):
+    return back_template_fstring.format(language_to=fields[0])
 
 
 def create_fields_list(names):
@@ -24,8 +71,7 @@ def create_templates(field_names):
             "name": "Card 1",
             "qfmt": (
                 f"{{{{{field_names[1]}}}}}<br>\n"
-                f"{{{{type:{field_names[0]}}}}}<br>\n"
-                f"deutsch -> russisch\n"
+                f"{{{{type:{field_names[0]}}}}}\n"
             ),
             "afmt": (
                 f"{{{{FrontSide}}}}<br>\n"

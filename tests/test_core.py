@@ -4,7 +4,7 @@ from audiocards.core import create_deck
 
 
 def test_create_deck():
-    csv_path = "data/vokabeln.csv"
+    csv_path = "csv/russian/vokabeln.csv"
     deck_name = "Test::Russischkurs::VL1"
     language = "ru"
 
