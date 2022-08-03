@@ -9,7 +9,7 @@ from audiocards.flashcards import generate_model, generate_deck, generate_note
 def create_deck(csv_path, language, deck_name, deck_id=None, model_id=None):
     language = language
 
-    df = pandas.read_csv(csv_path, sep="\t")
+    df = pandas.read_csv(csv_path, sep="\t", dtype=str)
     df.iloc[:, 0].apply(text_to_speech, language=language, path="data/audio")
 
     field_names = list(df)
